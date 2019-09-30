@@ -1,6 +1,8 @@
+//we could still apply the [Hash table] approach, but it costs us O(n) extra space,
+//plus it does not make use of the fact that the input is already sorted.
 //-----------------------------------------------------------
 //Method 1: binary search
-//runtime: O(NlogN)
+//runtime: O(NlogN), space: O(1)
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
         for (int i = 0; i < numbers.length; i++) {
@@ -24,6 +26,7 @@ class Solution {
 
 //-----------------------------------------------------------
 //method 2: two pointers
+//runtime: O(N) space: O(1)
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int lo = 0;
