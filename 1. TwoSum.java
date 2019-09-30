@@ -2,7 +2,7 @@
 //1. use 2 for loops:
 //HashMap: key: num[i], value: i(index)
 //Runtime O(n), Space O(n)
-//If brutal force : O(n^2)
+//If brutal force: O(n^2)
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> hm = new HashMap <Integer, Integer>();
