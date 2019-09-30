@@ -5,27 +5,15 @@ class Solution {
     public int[] twoSum(int[] numbers, int target) {
         for (int i = 0; i < numbers.length; i++) {
             int x = target - numbers[i];
-            if (x < numbers[i]) {
-                int lo = 0;
-                int hi = i-1;
-            }
-            else if (x > numbers[i]) {
-                int lo = i+1;
-                int hi = numbers.length -1;
-            }
-            else {
-                if (numbers[i+1] == numbers[i]) return new int[]{i+1,i+2};
-                else throw new IllegalArgumentException("No two sum solution");
-            }
-            int lo = 0;
+//对称性，i肯定比x的index小， lo从i+1开始考虑即可， 也避免了 x=target/2时num[i]跟num[i+1]相等时的index情况   
+            int lo = i+1;
             int hi = numbers.length -1;
             while (lo <= hi) {
                 int mid = (lo + hi) / 2;
                 if (x < numbers[mid])  hi = mid - 1;
                 else if (x > numbers[mid])  lo = mid + 1;
                 else {
-                    if (i < mid) return new int[]{i+1, mid+1};
-                    else if (i > mid)return new int[]{mid+1, i+1};
+                    return new int[]{i+1, mid+1};
                 }
                 continue;
             }
