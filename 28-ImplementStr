@@ -1,12 +1,13 @@
 class Solution {
     public int strStr(String haystack, String needle) {
+        if (haystack == "" && needle == "") return 0;
         int lenh = haystack.length();
         int lenn = needle.length();
         if (lenn > lenh || lenh == 0) return -1;
-        for (int i = 0; i < lenh; i++) {
+        for (int i = 0; i < lenh-lenn; i++) {
             for (int j = 0; j < lenn; j++ ) {
                 if (haystack.charAt(i+j) != needle.charAt(j)) {
-                        break;
+                    break;
                 }
                 return i;
             }
