@@ -1,17 +1,69 @@
+//O(mn)
 class Solution {
     public int strStr(String haystack, String needle) {
-        if (haystack == "" && needle == "") return 0;
         int lenh = haystack.length();
         int lenn = needle.length();
-        if (lenn > lenh || lenh == 0) return -1;
-        for (int i = 0; i < lenh-lenn; i++) {
-            for (int j = 0; j < lenn; j++ ) {
+        if (lenn == 0) return 0;
+        if (lenn > lenh) return -1;
+        for (int i = 0; i <= lenh-lenn; i++) {
+            int j = 0;
+            for (j = 0; j < lenn; j++ ) {
                 if (haystack.charAt(i+j) != needle.charAt(j)) {
                     break;
-                }
-                return i;
+                }    
             }
+            if (j == lenn) return i;
         }
         return -1;
+    }
+}
+
+//Book Method
+class Solution {
+    public int strStr(String haystack, String needle) {
+        for (int i = 0; ; i++) {
+            for (int j = 0; ; j++) {
+                if (j == needle.length()) return i;
+                if (i + j == haystack.length()) return -1;
+                if (needle.charAt(j) != haystack.charAt(i + j)) break;
+            }
+        }
+    }
+}
+
+//KMP
+package edu.gatech.seclass;
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        //KMP algorithms
+        if(needle.equals("")) return 0;
+        if(haystack.equals("")) return -1;
+        char[] arr = needle.toCharArray();
+        int[] next = makeNext(arr);
+
+        int i = 0, j = 0;
+        while (i < haystack.length()) {
+            while (j >= 0 && haystack.charAt(i) != arr[j]) j = next[j];
+            i++;
+            j++;
+            if (j == needle.length()) return i - j;
+        }
+        return -1;
+    }
+
+    private int[] makeNext(char[] arr){
+        int len = arr.length;
+        int[] next = new int[len + 1];
+
+        next[0] = -1;
+        int i = 0, j = -1;
+        while (i < len) {
+            while (j >= 0 && arr[i] != arr[j]) j = next[j];
+            i++;
+            j++;
+            next[i] = j;
+        }
+        return next;
     }
 }
