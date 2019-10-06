@@ -3,27 +3,27 @@
 class Solution {
     public void reverseWords(char[] s) {
         int len = s.length;
-        reverse(s, 0, len);
+        reverse(s, 0, len - 1);
         int l = 0;
-        int r;
-        for (int i = 0; i < len; i++) {
-            if (i == 0)  l = i;
-            else if (s[i-1] == ' ') l = i;
-            if (s[i] != ' '){
-                continue;
+        int r = len - 1;
+        for (int i = 0; i <= len; i++) {
+            if (i == len || s[i] == ' ' ){
+                r = i -1;
+                reverse(s, l, r);
+                l = i+1;
+                }
+            else if (i == len -1) {
             }
-            r = i;
-            reverse(s, l, r);
         }
     }
     public void reverse(char[] s, int l, int r) {
         char temp;
-        int j = r;
-        for (int i = l; i < (l+r)/2; i++) {
-            temp = s[i];
-            s[i] = s[j-1];
-            s[j-1] = temp;
-            j--;
+        while (l < r) {
+            temp = s[l];
+            s[l] = s[r];
+            s[r] = temp;
+            l++;
+            r--;
         }
     }
 }
