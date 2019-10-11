@@ -1,6 +1,7 @@
 //
-//Method 1: two pointers
-//run time: O(n)
+//Method 1: two pointers 
+//Need extra space
+//run time: O(n) Space: o(logn)
 class Solution {
     public boolean isPalindrome(int x) {
         String s = String.valueOf(x);
