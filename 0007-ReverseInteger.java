@@ -21,6 +21,20 @@ class Solution {
 //翻转后的结果为 2147483641，都在正确的范围内，所以不用 check。
 
 
+//Method 2 用 long 防止 overflow
+class Solution {
+public:
+    int reverse(int x) {
+        long res = 0;
+        while (x != 0) {
+            res = 10 * res + x % 10;
+            x /= 10;
+        }
+        return (res > INT_MAX || res < INT_MIN) ? 0 : res;
+    }
+};
+
+
 //Method 2 wrong
 
 class Solution {
