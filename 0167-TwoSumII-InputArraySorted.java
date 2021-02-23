@@ -31,7 +31,7 @@ class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int lo = 0;
         int hi = numbers.length -1;
-        while (lo <= hi) {
+        while (lo < hi) {
             int sum = numbers[lo] + numbers[hi];
             if (sum > target) hi--;
             else if (sum < target) lo++;
