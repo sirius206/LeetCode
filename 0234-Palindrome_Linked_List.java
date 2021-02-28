@@ -59,8 +59,26 @@ class Solution {
             preNode = curNode;
             curNode = nextNode;
         }
-        //preNode.next = null;
         return preNode;
     }
     
+}
+
+
+//3 recursion Time O(n), Space O(n)
+    private ListNode frontPointer;
+
+    private boolean recursivelyCheck(ListNode currentNode) {
+        if (currentNode != null) {
+            if (!recursivelyCheck(currentNode.next)) return false;
+            if (currentNode.val != frontPointer.val) return false;
+            frontPointer = frontPointer.next;
+        }
+        return true;
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        frontPointer = head;
+        return recursivelyCheck(head);
+    }
 }
