@@ -1,4 +1,4 @@
-// Method 1 by myself <- Book
+// Method 1 Time O(n), Space O(1)
 // l1 或 l2 为null时也可继续
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -24,70 +24,34 @@ class Solution {
 }
 
 
-//Method 2 by myself
-//需要简化
-
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
+//Method 2 self 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(0);
-        ListNode result = dummyHead;
-        int carryOver = 0;
-        while (l1 != null && l2 != null) {
-            result.next = new ListNode (l1.val + l2.val + carryOver);
-            if (result.next.val >= 10) {
-                result.next.val = result.next.val % 10;
-                carryOver = 1;
-            }
-            else carryOver = 0;
-            l1 = l1.next;
-            l2 = l2.next;
-            result = result.next;
+        ListNode preNode = dummyHead;        
+        ListNode nodeA = l1;
+        ListNode nodeB = l2;
+        int a = 0;
+        int b = 0;
+        int sum = 0;
+        int value = 0;
+        int carry = 0;
+        while (nodeA != null || nodeB != null) {
+            if (nodeA != null) a = nodeA.val;
+            else a = 0;
+            if (nodeB != null) b = nodeB.val;
+            else b = 0;
+            sum = a + b + carry;
+            carry = sum / 10;
+            value = sum % 10;
+            if (nodeA != null) nodeA = nodeA.next;
+            if (nodeB != null) nodeB = nodeB.next;  
+            preNode.next = new ListNode(value);
+            preNode = preNode.next;
         }
-        if (l1 != null) {
-            while (l1 != null) {
-                result.next = new ListNode(l1.val + carryOver);
-                if (result.next.val == 10) {
-                    result.next.val = 0;
-                    carryOver = 1;
-                    l1 = l1.next;
-                    result = result.next;
-                }
-                else {
-                    carryOver = 0;
-                    result = result.next;
-                    result.next = l1.next;
-                    break;
-                }
-            }
-        }
-
-        if (l2 != null) {
-            while (l2 != null) {
-                result.next = new ListNode(l2.val + carryOver);
-                if (result.next.val == 10) {
-                    result.next.val = 0;
-                    carryOver = 1;
-                    l2 = l2.next;
-                    result = result.next;
-                }
-                else {
-                    carryOver = 0;
-                    result = result.next;
-                    result.next = l2.next;
-                    break;
-                }
-            }
-        }
-        if (carryOver == 1) {
-            result.next = new ListNode(1);
+        if (carry == 1) {
+            preNode.next = new ListNode(1);
+            //node.next = null;
         }
         return dummyHead.next;
     }
