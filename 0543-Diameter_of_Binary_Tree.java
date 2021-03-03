@@ -7,15 +7,15 @@ class Solution {
     int max;  // important to declare here so both functions can modify it
     
     public int diameterOfBinaryTree(TreeNode root) {
-        max = 1;   // 1, not 0, refers to height
-        depth(root);  // calculate max
-        return max - 1;  // -1 diameter
+        max = 0;  
+        depth(root);  // call function to calculate max
+        return max;  
     }
     private int depth (TreeNode root){
         if (root == null) return 0;
         int L = depth(root.left);   // calculate before as the it's used twice later
         int R = depth(root.right);
-        max = Math.max(max, L + R + 1);
+        max = Math.max(max, L + R);
         return Math.max(L, R) + 1;
     }
 }
