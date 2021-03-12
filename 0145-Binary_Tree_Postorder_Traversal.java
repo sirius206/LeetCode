@@ -11,7 +11,27 @@ class Solution {
 }
 
 
-//2. Iterative Time O(n), Space O(logn ~ n) 
+//2. Iterative Preorder Traversal: Tweak the Order of the Output
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        LinkedList<Integer> output = new LinkedList();
+        Deque<TreeNode> stack = new ArrayDeque();
+        
+        if (root == null) return output;
+
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            root = stack.pop();
+            output.addFirst(root.val);
+            if (root.left != null) stack.push(root.left);
+            if (root.right != null) stack.push(root.right);
+        }
+
+        return output;
+    }
+}
+
+//3. Iterative Time O(n), Space O(logn ~ n) 
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> output = new ArrayList();
