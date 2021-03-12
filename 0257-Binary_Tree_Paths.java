@@ -2,22 +2,24 @@
 //Time O(N), Space: Completely balanced Olog(N), completely unbalanced O(n)
 
 class Solution {
-  public void construct_paths(TreeNode root, String path, ArrayList<String> paths) {
-    if (root != null) {
-      path += Integer.toString(root.val);
-      if ((root.left == null) && (root.right == null))  // if reach a leaf
-        paths.add(path);  // update paths
-      else {
-        path += "->";  // extend the current path
-        construct_paths(root.left, path, paths);
-        construct_paths(root.right, path, paths);
-      }
+    private List<String> paths = new ArrayList<String>();
+    public List<String> binaryTreePaths(TreeNode root) {
+        String path = "";
+        constructPaths(root, path);
+        return paths;
     }
-  }
-
-  public List<String> binaryTreePaths(TreeNode root) {
-    ArrayList<String> paths = new ArrayList<String>();
-    construct_paths(root, "", paths);
-    return paths;
-  }
+    private void constructPaths(TreeNode root, String path) {
+        if (root == null) return;
+        path = path + String.valueOf(root.val);
+        if (root.left == null && root.right == null) {
+            paths.add(path);  // if is array, need to make new, see #113
+        }
+        else {
+            path = path + "->";
+            constructPaths(root.left, path);
+            constructPaths(root.right, path);  
+          // if is array, need to do a remove; 
+        }
+    }
+    
 }
