@@ -18,6 +18,6 @@ class Solution {
         }
         construct_path(root.left, targetSum - root.val, path);
         construct_path(root.right, targetSum - root.val, path);
-        path.remove(path.size() - 1);
+        path.remove(path.size() - 1);  //need to remove, because array is a reference, if string, doesn't need this line
     }
 }
