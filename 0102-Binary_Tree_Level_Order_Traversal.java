@@ -7,7 +7,7 @@ class Solution {
         queue.add(root);
         while (!queue.isEmpty()) {
             List<Integer> currentLevel = new ArrayList<>();
-            int size = queue.size();
+            int size = queue.size();  //important to calculate here, not in the for statement, because queue size changes inside the loop
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 currentLevel.add(node.val);
