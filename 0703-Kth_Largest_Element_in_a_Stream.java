@@ -1,4 +1,4 @@
-//1. min Heap, Time O(n), Space O(k) 
+//1. min Heap, Time O(n log k), Space O(k) 
 class KthLargest {
     private int k;
     private PriorityQueue<Integer> minPQ;
