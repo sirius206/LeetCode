@@ -28,25 +28,25 @@ class Solution {
         current.remove(current.size() - 1);
     }
 }
-//另一种recursion， C++
+//另一种recursion
 class Solution {
-public:
-    vector<vector<int> > subsets(vector<int> &S) {
-        vector<vector<int> > res;
-        vector<int> out;
-        sort(S.begin(), S.end());
-        getSubsets(S, 0, out, res);
+    public List<List<Integer>> subsets(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        helper(res,new ArrayList<>(),nums,0);
         return res;
     }
-    void getSubsets(vector<int> &S, int pos, vector<int> &out, vector<vector<int> > &res) {
-        res.push_back(out);
-        for (int i = pos; i < S.size(); ++i) {
-            out.push_back(S[i]);
-            getSubsets(S, i + 1, out, res);
-            out.pop_back();
+    
+    public void helper(List<List<Integer>> res, List<Integer> ls, int[] nums, int pos) {
+        res.add(new ArrayList<>(ls));
+        for(int i=pos;i<nums.length;i++) {
+            //if(i>pos&&nums[i]==nums[i-1]) continue;
+            ls.add(nums[i]);
+            helper(res,ls,nums,i+1);     
+            ls.remove(ls.size()-1);
         }
-    }
-};
+    }        
+}
 
 
 //2. Backtracking Time O(n * 2^n), Space: O(n)
