@@ -28,6 +28,26 @@ class Solution {
         current.remove(current.size() - 1);
     }
 }
+//另一种recursion， C++
+class Solution {
+public:
+    vector<vector<int> > subsets(vector<int> &S) {
+        vector<vector<int> > res;
+        vector<int> out;
+        sort(S.begin(), S.end());
+        getSubsets(S, 0, out, res);
+        return res;
+    }
+    void getSubsets(vector<int> &S, int pos, vector<int> &out, vector<vector<int> > &res) {
+        res.push_back(out);
+        for (int i = pos; i < S.size(); ++i) {
+            out.push_back(S[i]);
+            getSubsets(S, i + 1, out, res);
+            out.pop_back();
+        }
+    }
+};
+
 
 //2. Backtracking Time O(n * 2^n), Space: O(n)
 //生成含0个， 1个， 。。。 n个的组合
