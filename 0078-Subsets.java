@@ -31,19 +31,21 @@ class Solution {
 //*****better recursion
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
-        helper(res,new ArrayList<>(),nums,0);
+        if (nums == null || nums.length == 0) return res;
+        Arrays.sort(nums);
+        List<Integer> current = new ArrayList<>();
+        helper(nums, 0, res, current);
         return res;
     }
     
-    public void helper(List<List<Integer>> res, List<Integer> ls, int[] nums, int pos) {
-        res.add(new ArrayList<>(ls));
-        for(int i=pos;i<nums.length;i++) {
-            //if(i>pos&&nums[i]==nums[i-1]) continue;
-            ls.add(nums[i]);
-            helper(res,ls,nums,i+1);     
-            ls.remove(ls.size()-1);
+    public void helper(int[] nums, int start, List<List<Integer>> res, List<Integer> current) {
+        res.add(new ArrayList<>(current));
+        for(int i = start; i < nums.length; i++) {
+            //if(i > start && nums[i] == nums[i - 1]) continue;
+            current.add(nums[i]);
+            helper(nums, i + 1, res, current);     
+            current.remove(current.size() - 1);
         }
     }        
 }
