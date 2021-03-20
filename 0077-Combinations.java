@@ -1,4 +1,4 @@
-//1. DFS, Backtracking Time O(kCNk)where C_N^k = N!/((N - k)! k!) Space O(kCNk)
+//1. DFS, Backtracking Time O(kCNk)where C_N^k = N!/((N - k)! k!) Space O(k) to keep the current combination, also another k for recursion
  
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
