@@ -1,4 +1,4 @@
-//1. Topological Sorting, Time O(m + n), Space O(m + n)
+//1. Topological Sorting, Time O(V + E), Space O(V + E) (InDegree O(V), adjList O(E))
 
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
