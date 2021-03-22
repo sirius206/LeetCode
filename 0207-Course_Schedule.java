@@ -10,8 +10,8 @@ class Solution {
         }
         int count = 0;
         for (int i = 0; i < len; i++){
-            adjList.get(prerequisites[i][0]).add(prerequisites[i][1]);
-            inDegree[prerequisites[i][1]]++;
+            adjList.get(prerequisites[i][1]).add(prerequisites[i][0]);
+            inDegree[prerequisites[i][0]]++;
         }
         
         Queue<Integer> q = new LinkedList<>();
