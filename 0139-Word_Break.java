@@ -1,5 +1,7 @@
 
-//1. recursion with memory Time: O(n^3) Space: O(n) 
+//1. recursion with memory Time: O(n^3) Space: O(n). 
+//Size of recursion tree can go up to n^2, The depth of recursion tree can go up to n
+// memo[i] is true if i ~ n is true
 public class Solution {
     private Map<Integer, Integer> memo = new HashMap<>();
     public boolean wordBreak(String s, List<String> wordDict) {
@@ -67,7 +69,25 @@ public class Solution {
     }
 }
 
-//2. DP Time: O(n^3) Space: O(n) 
+//2. DP Time: O(n^3) Space: O(n) from end
+//There are two nested loops, and substring computation at each iteration so O(n^3)
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        int len = s.length();
+        boolean[] dp = new boolean[len + 1];
+        HashSet<String> wordSet = new HashSet<>(wordDict);
+        dp[len] = true;
+        for (int i = len - 1; i >= 0; i--){
+            for (int j = i + 1; j <= len; j++){
+                if (wordSet.contains(s.substring(i,j)) && dp[j]){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[0];
+    }
+//2b from start
 public class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> wordDictSet = new HashSet<>(wordDict);
