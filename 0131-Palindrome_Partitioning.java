@@ -1,4 +1,4 @@
-//Backtracking with memo 
+//1. Backtracking with memo 
 // Time: O(n⋅2^n) 2^n possible substrings and O(n) to generate substring, Space: O(n^2)
 
 class Solution {
@@ -53,7 +53,7 @@ class Solution {
     }
 }
 
-//2. no isPalindrome function
+//2. Backtracking with DP
 class Solution {
     public List<List<String>> partition(String s) {
         int len = s.length();
