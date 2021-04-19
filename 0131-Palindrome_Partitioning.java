@@ -17,7 +17,7 @@ class Solution {
         
         for (int end = start; end < s.length(); end++){
             if (memo[start][end] == null){
-                if (isPalindrome(s.substring(start, end + 1))){
+                if (isPalindrome(s, start, end, memo)){
                     memo[start][end] = true;
                 }
                 else memo[start][end] = false;
@@ -30,15 +30,22 @@ class Solution {
         }
     }
     
-    private boolean isPalindrome(String s){
-        int len = s.length();
-        if (len <= 1) return true;
-        int lo = 0;
-        int hi = len - 1;
+
+    private boolean isPalindrome(String s, int lo, int hi, Boolean[][] memo){
+        if (hi - lo == 0) return true;
+        if (memo[lo][hi] != null) {
+            if (memo[lo][hi] == true) {
+                return true;
+            }
+        }
         while(lo < hi){
             if (s.charAt(lo) != s.charAt(hi)){
                 return false;
             }
+            if (s.charAt(lo) == s.charAt(hi)){
+                if (hi - lo >= 2 && memo[lo + 1][hi - 1] == true)
+                return true;
+            }            
             lo++;
             hi--;
         }
@@ -46,7 +53,7 @@ class Solution {
     }
 }
 
-//2. 
+//2. no isPalindrome function
 class Solution {
     public List<List<String>> partition(String s) {
         int len = s.length();
