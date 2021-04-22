@@ -10,7 +10,7 @@ class Solution {
     private void construct_path(TreeNode root, int targetSum, List<Integer> path) {
         if (root == null) return;   //only return here, not on leaf
         path.add(root.val);
-        if (root.left == null & root.right == null && targetSum == root.val) {
+        if (root.left == null && root.right == null && targetSum == root.val) {
             all_path.add(new ArrayList<>(path));   
           //need to make new, because array is a reference
           //by doing the list method, you are initializing a new array in an entire new address so when you pop later on in the code, 
