@@ -36,20 +36,11 @@ class Solution {
 
     // Check subtrees to see if they are balanced.
     TreeInfo left = isBalancedTreeHelper(root.left);
-    if (!left.balanced) {
-      return new TreeInfo(-1, false);
-    }
     TreeInfo right = isBalancedTreeHelper(root.right);
-    if (!right.balanced) {
-      return new TreeInfo(-1, false);
+    if (left.balanced && right.balanced && Math.abs(left.height - right.height) < 2) {
+        return new TreeInfo(Math.max(left.height, right.height) + 1, true);
     }
-
-    // Use the height obtained from the recursive calls to
-    // determine if the current node is also balanced.
-    if (Math.abs(left.height - right.height) < 2) {
-      return new TreeInfo(Math.max(left.height, right.height) + 1, true);
-    }
-    return new TreeInfo(-1, false);
+    else return new TreeInfo(-1, false);
   }
 
   public boolean isBalanced(TreeNode root) {
