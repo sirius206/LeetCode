@@ -1,4 +1,4 @@
-// 1. my solution Top-down recursion, redundant, Time O(n), Space O(n)
+// 1. my solution Top-down recursion, redundant, Time O(nlogn), Space O(n)
 
 class Solution {
     public boolean isBalanced(TreeNode root) {
@@ -13,7 +13,7 @@ class Solution {
     }
 }
 
-//2: Bottom-up recursion 
+//2: Bottom-up recursion Time O(n), Space O(n)
 // Utility class to store information from recursive calls
 final class TreeInfo {
   public final int height;
