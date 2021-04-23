@@ -1,6 +1,9 @@
-//1. 
-//Time O(n), Space O(n)
-
+//1. recursion Time O(n), Space O(n)
+//If the current (sub)tree contains both p and q, then the function result is their LCA. 
+//If only one of them is in that subtree, then the result is that one of them. 
+//- 若p和q分别位于左右子树中，那么对左右子结点调用递归函数，会分别返回p和q结点的位置，而当前结点正好就是p和q的最小共同父结点，直接返回当前结点即可
+//- 若p和q同时位于左子树，这里有两种情况，一种情况是 left 会返回p和q中较高的那个位置，而 right 会返回空，所以最终返回非空的 left 即可
+//  还有一种情况是会返回p和q的最小父结点，就是说当前结点的左子树中的某个结点才是p和q的最小父结点，会被返回。
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;
