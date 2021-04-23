@@ -13,7 +13,7 @@ class Solution {
     }
 }
 
-//2: Bottom-up recursion Time O(n), Space O(n)
+//2: DC, Bottom-up recursion Time O(n), Space O(n)
 // Use "result type" (包装的类): Utility class to store information from recursive calls
 final class TreeInfo {
   public final int height;
