@@ -1,39 +1,31 @@
 //1. DP 2D array Time:O(n^2) Space:O(n^2)
 class Solution {
     public String longestPalindrome(String s) {
-        if (s.equals("")) return "";
-        int len = s.length();
-        int[][] f = new int[len][len];
-        int max = 1;
-        int st = 0;
-        int end = 0;
-      //base case: 对角线 f[i,i]和f[i, i+ 1]
-        for (int i = 0; i < len; i++){
-            f[i][i] = 1;
-            if (i + 1 < len){
-                if (s.charAt(i) == s.charAt(i + 1)){
-                    f[i][i + 1] = 2;
-                    if (f[i][i + 1] > max){
-                        st = i;
-                        end = i + 1;
+        if (s.length() <= 1)
+            return s;
+        
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        
+        for (int i = 0; i < s.length(); i++)
+            dp[i][i] = true;
+        
+        int longestPalindromeStart = 0, longestPalindromeLength = 1;
+        for (int start = s.length() - 1; start >= 0; start--) {
+            for (int end = start + 1; end < s.length(); end++) {
+                if (s.charAt(start) == s.charAt(end)) {
+                    if (end - start == 1 || dp[start + 1][end - 1]) {
+                        dp[start][end] = true;
+                        if (longestPalindromeLength < end - start + 1) {
+                            longestPalindromeStart = start;
+                            longestPalindromeLength = end - start + 1;
+                        }
                     }
                 }
+
             }
         }
-        for (int k = 2; k< len; k++){
-            for (int i = 0; i < len - k; i++){
-                int j = i + k;
-                if (s.charAt(i) == s.charAt(j) && (f[i + 1][j - 1] != 0)) {
-                    f[i][j] = f[i + 1][j - 1] + 2;
-                }
-                else f[i][j] = 0;
-                if (f[i][j] > max){
-                    st = i;
-                    end = j;
-                }
-            }
-        }
-        return s.substring(st, end + 1);
+        
+        return s.substring(longestPalindromeStart, longestPalindromeStart + longestPalindromeLength);
     }
 }
 
