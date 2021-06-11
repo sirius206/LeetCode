@@ -1,7 +1,7 @@
 //1. DFS, Time O(M×N) Space O(M×N)
 class Solution {
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) return 0;
+        if (grid.length == 0) return 0;
         int nr = grid.length;
         int nc = grid[0].length;
         int count = 0;
@@ -33,7 +33,7 @@ class Solution {
 //2. BFS Time O(M×N) Space O(min(M, N)) in worst case where the grid is filled with lands, the size of queue can grow up to min(M,N) (diagonal)
 class Solution {
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) return 0;
+        if (grid.length == 0) return 0;
         int nr = grid.length;
         int nc = grid[0].length;
         int count = 0;
@@ -77,7 +77,7 @@ class Solution {
     private int count = 0;
     private int[] parent;
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) return 0;
+        if (grid.length == 0) return 0;
         int nr = grid.length;
         int nc = grid[0].length;
         parent = new int[nr * nc]; 
