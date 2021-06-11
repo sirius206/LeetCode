@@ -30,7 +30,7 @@ class Solution {
     }
 }
 
-//2. BFS Time O(M×N) Space O(min(M, N)) in worst case where the grid is filled with lands, the size of queue can grow up to min(M,NM,N)
+//2. BFS Time O(M×N) Space O(min(M, N)) in worst case where the grid is filled with lands, the size of queue can grow up to min(M,N) (diagonal)
 class Solution {
     public int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0) return 0;
