@@ -1,31 +1,32 @@
 //1. max Heap, Time O(n log k), Space O(k)
-
-
-//2. Sort, Time O(nlogn) Space O(n)
+// can sort the result and handle live stream
 class Solution {
-    public int[][] kClosest(int[][] points, int K) {
-        int N = points.length;
-        int[] dists = new int[N];
-        for (int i = 0; i < N; ++i)
-            dists[i] = dist(points[i]);
-
-        Arrays.sort(dists);
-        int distK = dists[K-1];
-
-        int[][] ans = new int[K][2];
-        int t = 0;
-        for (int i = 0; i < N; ++i)
-            if (dist(points[i]) <= distK)
-                ans[t++] = points[i];
-        return ans;
-    }
-
-    public int dist(int[] point) {
-        return point[0] * point[0] + point[1] * point[1];
+    public int[][] kClosest(int[][] points, int k) {
+        int[][] res = new int[k][2];
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[0] * b[0] + b[1] * b[1] - a[0] * a[0] - a[1] * a[1]);
+        
+        for (int[] point : points){
+            pq.offer(point);
+            if (pq.size() > k){
+                pq.poll();
+            }
+        }
+        
+        for (int i = k - 1; i >= 0; i--){
+            res[i] = pq.poll();
+        }
+        return res;
     }
 }
 
-//3 DC, quick select Time O(n), Space O(n) 
+
+//2 DC, quick select Time O(n), Space O(n) 
+// can't sort the output and can't handle live stream
+//Quick select: each iteration, we choose a pivot and then find the position p the pivot should be. Then we compare p with the K, if the p is smaller than the K, 
+//meaning the all element on the left of the pivot are all proper candidates but it is not adequate, we have to do the same thing on right side, and vice versa. 
+//If the p is exactly equal to the K, meaning that we've found the K-th position. Therefore, we just return the first K elements, 
+//since they are not greater than the pivot.
+
 import java.util.concurrent.ThreadLocalRandom;
 
 class Solution {
@@ -77,4 +78,44 @@ class Solution {
         points[j][0] = t0;
         points[j][1] = t1;
     }
+}
+
+
+// quick select 2, don't understand
+public int[][] kClosest(int[][] points, int K) {
+    int len =  points.length, l = 0, r = len - 1;
+    while (l <= r) {
+        int mid = helper(points, l, r);
+        if (mid == K) break;
+        if (mid < K) {
+            l = mid + 1;
+        } else {
+            r = mid - 1;
+        }
+    }
+    return Arrays.copyOfRange(points, 0, K);
+}
+
+private int helper(int[][] A, int l, int r) {
+    int[] pivot = A[l];
+    while (l < r) {
+        while (l < r && compare(A[r], pivot) >= 0) r--;
+        A[l] = A[r];
+        while (l < r && compare(A[l], pivot) <= 0) l++;
+        A[r] = A[l];
+    }
+    A[l] = pivot;
+    return l;
+}
+
+private int compare(int[] p1, int[] p2) {
+    return p1[0] * p1[0] + p1[1] * p1[1] - p2[0] * p2[0] - p2[1] * p2[1];
+}
+
+
+//3. Sort, Time O(nlogn) Space O(n)
+
+public int[][] kClosest(int[][] points, int K) {
+    Arrays.sort(points, (p1, p2) -> p1[0] * p1[0] + p1[1] * p1[1] - p2[0] * p2[0] - p2[1] * p2[1]);
+    return Arrays.copyOfRange(points, 0, K);
 }
