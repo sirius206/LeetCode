@@ -1,5 +1,5 @@
 //take mod, save mod frequencies in an array of length 60, then count
-//ans: loop while count
+//ans: loop while count, one pass
 //Time O(n) Space O(1)
 class Solution {
     public int numPairsDivisibleBy60(int[] time) {
@@ -29,7 +29,7 @@ class Solution {
             int rem = time[i] % 60;
             count[rem]++;
         }
-        int res = count[0] * (count[0] - 1) / 2+ count[30] * (count[30] - 1) / 2;
+        int res = count[0] * (count[0] - 1) / 2 + count[30] * (count[30] - 1) / 2;
         int i = 1; 
         int j = 59;
         while (i < j){
