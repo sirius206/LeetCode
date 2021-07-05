@@ -1,5 +1,9 @@
 //Time complexity O(nnd)  Space complexity O(nd)
 //DP 
+//dfs help find the the minimum difficulty
+//if start work at ith job with d days left.
+//If d = 1, only one day left, we have to do all jobs, return the maximum difficulty of jobs.
+
 class Solution {
     public int minDifficulty(int[] jobDifficulty, int D) {
         final int N = jobDifficulty.length;
