@@ -1,47 +1,35 @@
 //1. Two heaps Time O(log n), Space O(n)
-
+//left is max heap, right is min heap. 
 class MedianFinder {
-    PriorityQueue<Integer> left;
-    PriorityQueue<Integer> right;
+    public PriorityQueue<Integer> left;
+    public PriorityQueue<Integer> right;
     /** initialize your data structure here. */
     public MedianFinder() {
-        this.left = new PriorityQueue<>(Collections.reverseOrder());
         this.right = new PriorityQueue<>();
+        this.left = new PriorityQueue<>((a,b) -> b - a);  //this.left = new PriorityQueue<>(Collections.reverseOrder());
     }
     
     public void addNum(int num) {
-        if (left.size() < right.size() + 1) {
-            right.offer(num);
-            left.offer(right.poll());
-        }
-        else {
+        if (left.size() > right.size()) {
             left.offer(num);
-            right.offer(left.poll());           
+            int newNum = left.poll();
+            right.offer(newNum);
         }
-
+        else{
+            right.offer(num);
+            int newNum = right.poll();
+            left.offer(newNum);            
+        }
     }
-// Or insert to left and then balance    
-//    void addNum(int num)
-//    {
-//        lo.push(num);                                    // Add to max heap
-
- //       hi.push(lo.top());                               // balancing step
-//        lo.pop();
-
- //       if (lo.size() < hi.size()) {                     // maintain size property
- //           lo.push(hi.top());
- //           hi.pop();
-        }
-    }    
-    
     
     public double findMedian() {
-        if (left.size() == right.size()) {
-            return (left.peek() * 1.0 + right.peek()) / 2.0;
+        if (left.size() == right.size()){
+            return (left.peek() * 1.0) / 2 + (right.peek() * 1.0) / 2;
         }
-        else return left.peek() * 1.0;
+        else return (double) left.peek();
     }
 }
+
 
 //2. Insertion Sort Time O(n), Space O(n) 
 class MedianFinder {
