@@ -1,7 +1,7 @@
 
 //1. recursion with memory Time: O(n^3) Space: O(n). 
 //Size of recursion tree can go up to n^2, The depth of recursion tree can go up to n
-// memo[i] is true if i ~ n is true
+// memo[i] is true if i ~ n is substring
 public class Solution {
     private Map<Integer, Integer> memo = new HashMap<>();
     public boolean wordBreak(String s, List<String> wordDict) {
@@ -50,6 +50,7 @@ public class Solution {
     }
 }
 //1c  recursion Time: O(2^n) Space: O(n) 
+//Given a string of length nn, there are n + 1n+1 ways to split it into two parts. At each step, we have a choice: to split or not to split. In the worse case, when all choices are to be checked
 //Time Limit Exceeded
 public class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
