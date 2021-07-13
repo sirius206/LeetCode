@@ -1,4 +1,4 @@
-//1. guess randomly, Time O(n), Space O(n)
+//1. guess randomly, Time O(n), Space O(n), see discussion
 // each round, reduce the possible candidats, the correct word would also have x matches with the previously guessed word, 
 //loop through to find possible candidates
 class Solution {
@@ -23,14 +23,8 @@ class Solution {
 }
 
 
-//2. min max
-/**
- * // This is the Master's API interface.
- * // You should not implement it, or speculate about its implementation
- * interface Master {
- *     public int guess(String word) {}
- * }
- */
+//2. min max Time O(n^2), Space O(n), see discussion
+
 class Solution {
     public void findSecretWord(String[] wordlist, Master master) {
         for (int i = 0, x = 0; i < 10 && x < 6; ++i) {
