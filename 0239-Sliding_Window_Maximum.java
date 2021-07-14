@@ -33,7 +33,8 @@ class Solution {
 
     // remove from deq indexes of all elements 
     // which are smaller than current element nums[i]
-    while (!deq.isEmpty() && nums[i] > nums[deq.getLast()])                           deq.removeLast();
+    while (!deq.isEmpty() && nums[i] > nums[deq.getLast()])
+        deq.removeLast();
   }
 
   public int[] maxSlidingWindow(int[] nums, int k) {
