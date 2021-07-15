@@ -31,8 +31,8 @@ class Solution {
     if (!deq.isEmpty() && deq.getFirst() == i - k)
       deq.removeFirst();
 
-    // remove from deq indexes of all elements 
-    // which are smaller than current element nums[i]
+    // remove from deq indexes of all elements which are smaller than current element nums[i]
+    // You want to ensure the deque window only has decreasing elements. That way, the leftmost element is always the largest.
     while (!deq.isEmpty() && nums[i] > nums[deq.getLast()])
         deq.removeLast();
   }
