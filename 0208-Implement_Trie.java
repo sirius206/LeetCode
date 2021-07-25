@@ -31,7 +31,7 @@ class Trie {
     private TrieNode root;
     /** Initialize your data structure here. */
     public Trie() {
-        root = new TrieNode(' ');
+        this.root = new TrieNode(' ');
     }
     
     /** Inserts a word into the trie. */
