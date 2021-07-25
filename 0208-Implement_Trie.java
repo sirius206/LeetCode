@@ -21,19 +21,17 @@ i always return true;
 class TrieNode {
     public char val;
     public boolean isEnd;
-    public TrieNode[] children = new TrieNode[26];
-    public TrieNode(){}
+    public TrieNode[] children;
     public TrieNode(char c){
-        TrieNode node = new TrieNode();
-        node.val = c;
+        this.val = c;
+        this.children = new TrieNode[26];
     }
 }
 class Trie {
     private TrieNode root;
     /** Initialize your data structure here. */
     public Trie() {
-        root = new TrieNode();
-        root.val = ' ';
+        root = new TrieNode(' ');
     }
     
     /** Inserts a word into the trie. */
