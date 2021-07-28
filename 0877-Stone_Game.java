@@ -1,5 +1,6 @@
 //1. since number of piles is even, Alice always wins
 //2. 2D DP
+// Time O(n^2) Space O(n^2)
 /*
 dp[i][j] means the biggest number of stones you can get more than opponent picking piles in piles[i] ~ piles[j].
 You can first pick piles[i] or piles[j].
