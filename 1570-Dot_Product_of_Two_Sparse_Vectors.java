@@ -1,10 +1,8 @@
 //1. HashMap Time O(n) , Space O(L)
 class SparseVector {
     Map<Integer, Integer> map = new HashMap<>();
-    int len;
     SparseVector(int[] nums) {
-        this.len = nums.length;
-        for (int i = 0; i < len; i++){
+        for (int i = 0; i < nums.length; i++){
             if (nums[i] != 0) {
                 map.put(i, nums[i]);
             }
